@@ -9805,7 +9805,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &6561979148353263023
 MonoBehaviour:
@@ -9833,121 +9833,33 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6561979148353263018}
-        m_TargetAssemblyTypeName: NewMovement, Assembly-CSharp
-        m_MethodName: OnMovement
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 325d577c-4786-4745-b48f-ce9e9ecc42cf
+      m_Calls: []
+    m_ActionId: 6f5b6c6f-eb80-49a5-a2d8-95fe16de9771
     m_ActionName: Player/Movement[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6561979148353263018}
-        m_TargetAssemblyTypeName: NewMovement, Assembly-CSharp
-        m_MethodName: OnCamera
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 6ba3b6a8-be81-4c20-bd65-1d2527ba89cc
-    m_ActionName: Player/Camera[/XInputControllerWindows/rightStick/up,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/rightStick/right]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6561979148353263018}
-        m_TargetAssemblyTypeName: NewMovement, Assembly-CSharp
-        m_MethodName: OnJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 29552deb-9bbd-406f-9ef5-51770b9c8f7d
-    m_ActionName: Player/Jump[/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6561979148353263018}
-        m_TargetAssemblyTypeName: NewMovement, Assembly-CSharp
-        m_MethodName: OnSwing
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 27c46ce3-c157-40a6-a7ea-a49fa3c578c2
-    m_ActionName: Player/Swing[/XInputControllerWindows/rightShoulder]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6561979148353263018}
-        m_TargetAssemblyTypeName: NewMovement, Assembly-CSharp
-        m_MethodName: StartGrapple
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 3d5a6d30-7d39-4692-a1ee-3a122898ed58
-    m_ActionName: Player/Pull[/XInputControllerWindows/leftShoulder]
+      m_Calls: []
+    m_ActionId: 9b3c3db8-fff6-4f3c-ac01-b6ae3350b488
+    m_ActionName: Player/Camera[/XInputControllerWindows/rightStick/up,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/rightStick/right,/Mouse/delta]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: bb4bc7cf-e26c-45ca-a972-273f70aa05bd
-    m_ActionName: Player/Join[/XInputControllerWindows/start,/Keyboard/space]
+    m_ActionId: e86bc90b-4cb7-47ac-88e1-af6909b29a77
+    m_ActionName: Player/Jump[/XInputControllerWindows/buttonSouth,/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6561979148353263018}
-        m_TargetAssemblyTypeName: NewMovement, Assembly-CSharp
-        m_MethodName: SenseUp
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a47f18e7-e996-4269-be70-5dc56ead6b76
-    m_ActionName: Player/New action
+      m_Calls: []
+    m_ActionId: 81cce540-373b-43dd-b35b-26a1b2c29883
+    m_ActionName: Player/Grapple[/XInputControllerWindows/rightShoulder,/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6561979148353263018}
-        m_TargetAssemblyTypeName: NewMovement, Assembly-CSharp
-        m_MethodName: SenseDown
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0a4a9534-522b-4bd3-871e-99863f3f6a73
-    m_ActionName: Player/SenseDown[/XInputControllerWindows/dpad/left]
+      m_Calls: []
+    m_ActionId: 3fb5b14b-c8ed-4c9f-811d-a28a090ac79a
+    m_ActionName: Player/Swing[/XInputControllerWindows/leftShoulder,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bd0f780d-6a56-417e-9d48-2484e4a2c09e
+    m_ActionName: Player/SenseUp[/XInputControllerWindows/dpad/up,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b99e8887-a181-473d-831b-3db94b7fec19
+    m_ActionName: Player/SenseDown[/XInputControllerWindows/dpad/down,/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

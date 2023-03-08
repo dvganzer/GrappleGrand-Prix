@@ -28,11 +28,12 @@ public class UIController : MonoBehaviour
         {
             return;
         }
-        if(UpdateUIForPlayer.CurrentLap != currentLap)
+       /* if(UpdateUIForPlayer.CurrentLap != currentLap)
         {
             currentLap = UpdateUIForPlayer.CurrentLap;
             UITextCurrentLap.text = $"LAP: {currentLap}";
         }
+       */
         if(UpdateUIForPlayer.CurrentLapTime != currentLapTime)
         {
             currentLapTime = UpdateUIForPlayer.CurrentLapTime;

@@ -9,6 +9,7 @@ public class Grappling : MonoBehaviour
     [Header("References")]
     public bool freeze = false;
     public Transform cam;
+    public Transform gunTip;
 
     public LayerMask whatIsPullable;
     public LineRenderer lrs;
@@ -32,7 +33,7 @@ public class Grappling : MonoBehaviour
 
 
 
-    private bool grapplings;
+    public bool isGrappling;
 
     public void Start()
     {
@@ -49,7 +50,7 @@ public class Grappling : MonoBehaviour
     {
         if (grapplingCdTimer > 0) return;
 
-        grapplings = true;
+        isGrappling = true;
 
         freeze = true;
 
@@ -68,13 +69,14 @@ public class Grappling : MonoBehaviour
         }
 
         lrs.enabled = true;
+        lrs.SetPosition(0, gunTip.position);
         lrs.SetPosition(1, grapplePoints);
     }
 
     private void ExecuteGrapple()
     {
         freeze = false;
-
+        //grapplePoints = gunTip.position;
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
         float grapplePointRelativeYPos = grapplePoints.y - lowestPoint.y;
@@ -91,7 +93,7 @@ public class Grappling : MonoBehaviour
     {
         freeze = false;
 
-        grapplings = false;
+        isGrappling = false;
 
         grapplingCdTimer = grapplingCd;
 
@@ -100,7 +102,7 @@ public class Grappling : MonoBehaviour
 
     public bool IsGrapplings()
     {
-        return grapplings;
+        return isGrappling;
     }
 
     public Vector3 GetGrapplePoints()
@@ -174,4 +176,5 @@ public class Grappling : MonoBehaviour
 
         predictionHit = raycastHit.point == Vector3.zero ? sphereCastHit : raycastHit;
     }
+
 }    

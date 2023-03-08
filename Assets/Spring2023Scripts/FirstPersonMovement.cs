@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class FirstPersonMovement : MonoBehaviour
 {
-    [Header("Movement")]
+    [Header("Walking")]
     public float moveSpeed;
 
     public float groundDrag;
@@ -30,23 +30,66 @@ public class FirstPersonMovement : MonoBehaviour
     Vector3 moveDirection;
     Rigidbody rb;
 
+    public MovementState state;
+    public Grappling grappleState;
+    public Swinging swingState;
 
+    public AnimatorHandler animatorHandler;
+
+    public enum MovementState
+    {
+        running,
+        grappling,
+        swinging,
+        air
+    }
+
+    public PlayerInput playerInput;
+    public enum InputDevice {  controller = 0, keyboard = 1}
+
+    private void StateHandler()
+    {
+        if (grounded)
+        {
+            state = MovementState.running;
+        }
+        else if (swingState.isSwinging)
+        {
+            state = MovementState.swinging;
+            animatorHandler.anim.Play("Swing");
+            airMultiplier = 3f;
+        }
+        else if (grappleState.isGrappling)
+        {
+            state = MovementState.grappling;
+            animatorHandler.anim.Play("Pull");
+        }
+        else if (!grappleState.isGrappling && !swingState.isSwinging)
+        {
+            airMultiplier = 2f;
+            animatorHandler.anim.Play("In Air");
+        }
+        else
+            state = MovementState.air;
+            
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        animatorHandler = GetComponentInChildren<AnimatorHandler>();
+        animatorHandler.Initialize();
     }
 
-    private void MyInput()
-    {
-        
-        
-
-    }
     void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        
+       // Debug.Log(rb.velocity);
+        animatorHandler.UpdateAnimatorValues(movementInput.y, movementInput.x);
+        
 
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        
         SpeedControl();
 
         
@@ -64,7 +107,8 @@ public class FirstPersonMovement : MonoBehaviour
     }
 
     private void FixedUpdate()
-    { 
+    {
+        StateHandler();
         //PlayerMovement
         moveDirection = orientation.forward * movementInput.y + orientation.right * movementInput.x;
         if (grounded)
@@ -90,12 +134,14 @@ public class FirstPersonMovement : MonoBehaviour
 
     }
 
+
     public void Jump(InputAction.CallbackContext context)
     {
         //Jump
         if (context.performed && readyToJump && grounded)
         {
             readyToJump = false;
+            animatorHandler.anim.Play("Jump");
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             Invoke(nameof(ResetJump), jumpCooldown);
@@ -107,5 +153,6 @@ public class FirstPersonMovement : MonoBehaviour
         readyToJump = true;
     }
 
+    
 
 }

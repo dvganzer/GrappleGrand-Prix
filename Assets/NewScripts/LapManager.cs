@@ -9,7 +9,7 @@ public class LapManager : MonoBehaviour
     public float BestLapTime { get; private set; } = Mathf.Infinity;
     public float LastLapTime { get; private set; } = 0;
     public float CurrentLapTime { get; private set; } = 0;
-    public int CurrentLap { get; private set; } = 0;
+   // public int CurrentLap { get; private set; } = 0;
 
     public float lapTimerTimeStamp;
     public int lastCheckpointPassed = 0;
@@ -17,9 +17,10 @@ public class LapManager : MonoBehaviour
     public Transform checkpointsParent;
     public int checkpointCount;
     public int checkpointLayer;
-    public NewMovement playerController;
+    public FirstPersonMovement playerController;
 
     public GameObject pressStart;
+    public bool lapStarted = false;
 
     void Awake()
     {
@@ -27,23 +28,24 @@ public class LapManager : MonoBehaviour
         checkpointCount = checkpointsParent.childCount;
         Debug.Log(checkpointCount);
         checkpointLayer = LayerMask.NameToLayer("Checkpoint");
-        playerController = GetComponent<NewMovement>();
+        playerController = GetComponent<FirstPersonMovement>();
         pressStart.SetActive(false);
     }
 
     void StartLap()
     {
         Debug.Log("StartLap!");
-        CurrentLap++;
+       // CurrentLap++;
         lastCheckpointPassed = 1;
         lapTimerTimeStamp = Time.time;
-        Debug.Log(CurrentLap);
+       // Debug.Log(CurrentLap);
     }
     void EndLap()
     {
         LastLapTime = Time.time - lapTimerTimeStamp;
         BestLapTime = Mathf.Min(LastLapTime, BestLapTime);
         Debug.Log("EndLap - LapTime was " + LastLapTime + "seconds");
+        CurrentLapTime = 0;
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -55,18 +57,19 @@ public class LapManager : MonoBehaviour
 
         if(collider.gameObject.name == "1")
         {
-            if(lastCheckpointPassed == checkpointCount)
-            {
-                EndLap();
-            }
-            if(CurrentLap == 0 || lastCheckpointPassed == checkpointCount)
-            {
-                StartLap();
-            }
+            StartLap();
+            lapStarted = true;
+
+            return;
+        }
+        if (collider.gameObject.name == "6")
+        {
+            EndLap();
+            lapStarted = false;
             return;
         }
 
-        if(collider.gameObject.name == (lastCheckpointPassed + 1).ToString())
+        if (collider.gameObject.name == (lastCheckpointPassed + 1).ToString())
         {
             lastCheckpointPassed++;
         }
@@ -74,12 +77,13 @@ public class LapManager : MonoBehaviour
     }
     void Update()
     {
+        if(lapStarted)
         CurrentLapTime = lapTimerTimeStamp > 0 ? Time.time - lapTimerTimeStamp : 0;
-
+        /*
         if(CurrentLap == 4)
         {
             SceneManager.LoadScene(0);
             pressStart.SetActive(true);
-        }
+        }*/
     }
 }

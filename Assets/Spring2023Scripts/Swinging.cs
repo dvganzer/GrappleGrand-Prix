@@ -30,8 +30,9 @@ public class Swinging : MonoBehaviour
     [SerializedField] public RaycastHit predictionHit;
     [SerializedField] public float predictionSphereCastRadius;
     [SerializedField] public Transform predictionPoint;
+    [SerializedField] public bool isSwinging;
 
-    
+
     public Vector2 movementInput = Vector2.zero;
     
     private void Start()
@@ -93,7 +94,7 @@ public class Swinging : MonoBehaviour
     {
         if (context.performed)
         {
-            RaycastHit hit;
+            isSwinging = true;
             if (predictionHit.point == Vector3.zero) return;
             
 
@@ -121,6 +122,7 @@ public class Swinging : MonoBehaviour
         }
         if (context.canceled)
         {
+            isSwinging = false;
             lr.positionCount = 0;
             Destroy(joint);
             grappling = false;
