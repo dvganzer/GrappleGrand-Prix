@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GrappleObject
   - Ground
+  - 'button '
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - Ground
   - Water
   - UI
-  - Pull
-  - Swing
+  - Grappleable
+  - Button
   - Checkpoint
   - whatIsGround
   - 

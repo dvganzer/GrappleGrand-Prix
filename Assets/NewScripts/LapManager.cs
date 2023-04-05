@@ -13,13 +13,15 @@ public class LapManager : MonoBehaviour
 
     public float lapTimerTimeStamp;
     public int lastCheckpointPassed = 0;
-
+    public ButtonController buttonController;
     public Transform checkpointsParent;
     public int checkpointCount;
     public int checkpointLayer;
     public FirstPersonMovement playerController;
+    public AudioSource city;
+    public AudioSource raceMusic;
 
-    public GameObject pressStart;
+
     public bool lapStarted = false;
 
     void Awake()
@@ -29,10 +31,11 @@ public class LapManager : MonoBehaviour
         Debug.Log(checkpointCount);
         checkpointLayer = LayerMask.NameToLayer("Checkpoint");
         playerController = GetComponent<FirstPersonMovement>();
-        pressStart.SetActive(false);
+        buttonController = GetComponent<ButtonController>();
+        
     }
 
-    void StartLap()
+   public void StartLap()
     {
         Debug.Log("StartLap!");
        // CurrentLap++;
@@ -55,17 +58,12 @@ public class LapManager : MonoBehaviour
             return;
         }
 
-        if(collider.gameObject.name == "1")
-        {
-            StartLap();
-            lapStarted = true;
-
-            return;
-        }
         if (collider.gameObject.name == "6")
         {
             EndLap();
             lapStarted = false;
+            city.Play();
+            raceMusic.Stop();
             return;
         }
 
@@ -79,6 +77,7 @@ public class LapManager : MonoBehaviour
     {
         if(lapStarted)
         CurrentLapTime = lapTimerTimeStamp > 0 ? Time.time - lapTimerTimeStamp : 0;
+        Debug.Log(CurrentLapTime);
         /*
         if(CurrentLap == 4)
         {

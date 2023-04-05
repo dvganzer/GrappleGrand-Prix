@@ -51,27 +51,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SenseUp",
-                    "type": "Button",
-                    "id": "bd0f780d-6a56-417e-9d48-2484e4a2c09e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SenseDown",
-                    "type": "Button",
-                    "id": "b99e8887-a181-473d-831b-3db94b7fec19",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Join",
                     "type": "Button",
                     "id": "5556bc95-8b5b-4e62-a220-7425c29a1512",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "33ff2d3c-650c-4982-80f2-a25a46b536a7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -323,50 +314,6 @@
                 },
                 {
                     "name": "",
-                    "id": "1ad3aee1-47ee-40ba-be61-a55e95bd8f47",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SenseUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3f44b5f8-75fe-4839-94eb-6031f27362ae",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SenseUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "17d346ad-20de-46b0-83c9-f03defa4420f",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SenseDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e51a5c3a-7ebd-4735-9311-18109a485080",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SenseDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "6c4a5151-633e-4c04-a6ba-ec4bb63b1daf",
                     "path": "<Keyboard>/enter",
                     "interactions": "",
@@ -384,6 +331,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b07e1cc-6eed-4ec9-b4e4-485fb59a0415",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6429794-16ca-4732-8025-9ec9ba839918",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -20,12 +20,54 @@ public class PlayerCam : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    public enum ControllerType
+    {
+        KeyboardMouse,
+        Gamepad
+    }
+    public ControllerType currentControllerType;
+    private float lastInputTime = 0f;
+
+
     private void Start()
     {
         //Locks Cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        lastInputTime = Time.time;
+        CheckCurrentControllerType();
     }
+
+    void CheckCurrentControllerType()
+    {
+        float currentTime = Time.time;
+        bool gamepadConnected = Gamepad.current != null && (currentTime - Gamepad.current.lastUpdateTime) < 0.1f;
+        bool keyboardMouseConnected = Keyboard.current != null && (currentTime - Keyboard.current.lastUpdateTime) < 0.1f;
+        if (gamepadConnected)
+        {
+            currentControllerType = ControllerType.Gamepad;
+            sensX = 100f;
+            sensY = 100f;
+            lastInputTime = (float)Gamepad.current.lastUpdateTime;
+        }
+        else if (keyboardMouseConnected)
+        {
+            currentControllerType = ControllerType.KeyboardMouse;
+            lastInputTime = (float)Keyboard.current.lastUpdateTime;
+            sensX = 10f;
+            sensY = 10f;
+        }
+        else if (currentTime - lastInputTime > 0.5f)
+        { // if no input has been received in the last 0.5 seconds, assume keyboard/mouse
+            currentControllerType = ControllerType.KeyboardMouse;
+            sensX = 10f;
+            sensY = 10f;
+        }
+    }
+
+
+
 
     private void Update()
     {
@@ -41,6 +83,9 @@ public class PlayerCam : MonoBehaviour
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
 
+        CheckCurrentControllerType();
+
+
     }
 
     public void OnCamera(InputAction.CallbackContext context)
@@ -48,24 +93,6 @@ public class PlayerCam : MonoBehaviour
         cameraInput = context.ReadValue<Vector2>();
     }
 
-    public void SenseUp(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            sensX += .1f;
-            sensY += .1f;
-            SenseText.text = "SENSITIVITY:" + sensX * 10;
-        }
 
-    }
-    public void SenseDown(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            sensX -= .1f;
-            sensY -= .1f;
-            SenseText.text = "SENSITIVITY:" + sensX * 10;
-        }
-
-    }
 }
+
