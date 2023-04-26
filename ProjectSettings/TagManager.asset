@@ -7,6 +7,10 @@ TagManager:
   - GrappleObject
   - Ground
   - 'button '
+  - FinishRace
+  - StartBox
+  - FinishLine
+  - Checkpoints
   layers:
   - Default
   - TransparentFX

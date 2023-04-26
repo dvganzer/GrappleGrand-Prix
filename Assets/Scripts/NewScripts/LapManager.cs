@@ -26,7 +26,7 @@ public class LapManager : MonoBehaviour
 
     void Awake()
     {
-        checkpointsParent = GameObject.Find("Checkpoints(Clone)").transform;
+        checkpointsParent = GameObject.Find("Checkpoints").transform;
         checkpointCount = checkpointsParent.childCount;
         Debug.Log(checkpointCount);
         checkpointLayer = LayerMask.NameToLayer("Checkpoint");
@@ -77,7 +77,7 @@ public class LapManager : MonoBehaviour
     {
         if(lapStarted)
         CurrentLapTime = lapTimerTimeStamp > 0 ? Time.time - lapTimerTimeStamp : 0;
-        Debug.Log(CurrentLapTime);
+        //Debug.Log(CurrentLapTime);
         /*
         if(CurrentLap == 4)
         {

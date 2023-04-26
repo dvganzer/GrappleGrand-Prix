@@ -39,7 +39,7 @@ public class PlayerCam : MonoBehaviour
         CheckCurrentControllerType();
     }
 
-    void CheckCurrentControllerType()
+    public void CheckCurrentControllerType()
     {
         float currentTime = Time.time;
         bool gamepadConnected = Gamepad.current != null && (currentTime - Gamepad.current.lastUpdateTime) < 0.1f;

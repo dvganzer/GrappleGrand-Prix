@@ -5,11 +5,9 @@ using System.Collections.Generic;
 
 public class ButtonController : MonoBehaviour
 {
-    public GameObject button;
     public Text countdownText;
-    public Transform finishLine;
+    public GameObject finishLine;
     public float countdownDuration = 3f;
-    public Animation anim;
     public GameObject Signs;
     public GameObject Checkpoints;
     public LapManager lapMananager;
@@ -20,51 +18,72 @@ public class ButtonController : MonoBehaviour
     public AudioSource music;
     public AudioSource city;
     public AudioSource countdown;
+    public GameObject[] players;
+   // public GameObject triggerObject;
+   // public TriggerManager triggerManager;
 
 
     public void OnButtonClick(InputAction.CallbackContext context)
     {
         if (context.performed && !buttonPressed)
         {
-            anim.Play();
-            countdownText.gameObject.SetActive(true);
-            buttonPressed = true;
-            countdownTimer = countdownDuration;
-            transform.position = finishLine.position;
-            countdown.Play();
 
-
-            Instantiate(Signs);
-            
-
+           
         }
 
 
 
        
     }
+    private void Awake()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+       // triggerObject = GameObject.FindGameObjectWithTag("FinishRace");
+      //  triggerManager = triggerObject.GetComponent<TriggerManager>();
+    }
     private void Start()
     {
-        lapMananager = GetComponent<LapManager>();
+        foreach (GameObject players in players)
+        {
+            lapMananager = GetComponent<LapManager>();
+        }
+            
+            
         
     }
     private void Update()
     {
-        countdownText.text = countdownTimer.ToString();
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        Checkpoints = GameObject.FindGameObjectWithTag("Checkpoints");
+        finishLine = GameObject.FindGameObjectWithTag("FinishLine");
+
+        foreach (GameObject players in players)
         {
-            if (hit.collider.gameObject.name == "Button")
+            countdownText.text = countdownTimer.ToString("F0");
+        }
+            
+
+        if (countdownText.text == "3")
+        {
+            countdownText.color = Color.red;
+        }
+        if (countdownText.text == "2")
+        {
+            countdownText.color = Color.yellow;
+        }
+        if (countdownText.text == "1")
+        {
+            countdownText.color = Color.green;
+        }
+
+
+        if (buttonPressed)
+        {
+            countdownTimer -= Time.deltaTime;
+            if (countdownTimer <= 0f)
             {
-                
-                Debug.Log("BUTTON!");
-            }
-            if (buttonPressed)
-            {
-                countdownTimer -= Time.deltaTime;
-                if (countdownTimer <= 0f)
+                foreach (GameObject players in players)
                 {
-                    
+                    countdownText.text = "GO!";
                     lapMananager.lapStarted = true;
                     lapMananager.StartLap();
                     music.Play();
@@ -73,9 +92,29 @@ public class ButtonController : MonoBehaviour
                     countdownText.gameObject.SetActive(false);
                     buttonPressed = false;
                 }
+                   
             }
         }
+       
 
+    }
+        private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "StartBox")
+        {
+            
+            countdownText.gameObject.SetActive(true);
+            buttonPressed = true;
+            countdownTimer = countdownDuration;
+
+            countdown.Play();
+
+            foreach (GameObject players in players)
+            {
+                players.transform.position = finishLine.transform.position;
+            }
+            Instantiate(Signs);
+        }
     }
 }
 

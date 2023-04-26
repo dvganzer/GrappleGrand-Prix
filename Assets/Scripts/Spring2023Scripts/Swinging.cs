@@ -129,8 +129,9 @@ public class Swinging : MonoBehaviour
         {
             isSwinging = false;
             lr.positionCount = 0;
-            Destroy(joint);
+            DestroyJoints();
             grappling = false;
+            
         }
     }
     private Vector3 currentGrapplePosition;
@@ -191,5 +192,17 @@ public class Swinging : MonoBehaviour
         }
 
         predictionHit = raycastHit.point == Vector3.zero ? sphereCastHit : raycastHit;
+    }
+
+    void DestroyJoints()
+    {
+        // Get all joints attached to the current GameObject
+        Joint[] joints = GetComponents<Joint>();
+
+        // Loop through all joints and destroy them
+        foreach (Joint joint in joints)
+        {
+            Destroy(joint);
+        }
     }
 }
